@@ -10,9 +10,14 @@
 .import ppu_set_palette
 
 .import FamiToneInit
+.import FamiToneSfxInit
 .import FamiToneMusicPlay
 .import FamiToneUpdate
+.import FamiToneSfxPlay
+.importzp FT_SFX_CH0, FT_SFX_CH1
+.importzp FT_SFX_CH2, FT_SFX_CH3
 .import ralph4_music_music_data
+.import sounds
 
 .export main, nmi_handler, irq_handler
 
@@ -149,6 +154,10 @@ titleScreen:
     ldx #<ralph4_music_music_data
     ldy #>ralph4_music_music_data
     jsr FamiToneInit
+
+    ldx #<sounds
+    ldy #>sounds
+    jsr FamiToneSfxInit
 
     lda #1
     sta do_draw
@@ -302,6 +311,10 @@ restartGame:
 .endproc
 
 .proc do_kill_player
+    lda #1
+    ldx #FT_SFX_CH0
+    jsr FamiToneSfxPlay
+
     wait_for_nmi
     lda #GAME_DEATH_BG_COLOR
     sta palette_bg_color

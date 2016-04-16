@@ -1,5 +1,10 @@
 .include "src/globals.inc"
 
+.import FamiToneSfxPlay
+.importzp FT_SFX_CH0, FT_SFX_CH1
+.importzp FT_SFX_CH2, FT_SFX_CH3
+
+
 .export move_player, reset_player_position
 
 .segment "CODE"
@@ -243,6 +248,10 @@ endLoop:
     ; Collision detected! Handle it by turning gem invisible.
     lda #0
     sta gem_visible
+
+    lda #0
+    ldx #FT_SFX_CH0
+    jsr FamiToneSfxPlay
 noCollision:
     rts
 .endproc

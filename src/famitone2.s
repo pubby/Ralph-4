@@ -7,7 +7,11 @@
 .export FamiToneInit
 .export FamiToneMusicPlay
 .export FamiToneUpdate
+.export FamiToneSfxInit
+.export FamiToneSfxPlay
 .export FT_BASE_ADR
+.exportzp FT_SFX_CH0, FT_SFX_CH1
+.exportzp FT_SFX_CH2, FT_SFX_CH3
 
 ;settings, uncomment or put them into your main program; the latter makes possible updates easier
 

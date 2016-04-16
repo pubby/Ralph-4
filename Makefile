@@ -19,7 +19,7 @@ version := 0.01
 # (the \ character) at the end of the line and continue on the next.
 objlist := nrom init main bg player \
 levels enemies trig levelload globals palette gamepad sprites famitone2 \
-ralph4_music
+ralph4_music ralph4_sfx
 
 AS65 := ca65
 LD65 := ld65
@@ -31,6 +31,7 @@ EMU := fceux
 #EMU := wine fceux/fceux.exe
 
 TEXT2DATA := wine tools/text2data.exe
+NSF2DATA := wine tools/nsf2data.exe
 
 .PHONY: all run clean
 
@@ -74,6 +75,12 @@ $(srcdir)/ralph4_music.s: ralph4_music.txt
 	$(TEXT2DATA) -ca65 $<
 	echo ".export ralph4_music_music_data" > $@;
 	cat ralph4_music.s >> $@
+
+# sfx
+$(srcdir)/ralph4_sfx.s: ralph4_sfx.nsf
+	$(NSF2DATA) $< -ca65 
+	echo ".export sounds" > $@;
+	cat ralph4_sfx.s >> $@
 
 # cpp
 levelc: levelc.cpp
