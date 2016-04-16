@@ -182,6 +182,7 @@ startGame:
     sta palette_bg_color
 
     lda #0
+    sta animation_ticks
     ; Set digit counters to 0
     .repeat ::NUM_DEATHS_DIGITS, i
         sta deaths_digits+i
