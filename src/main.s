@@ -40,6 +40,7 @@ nmi_counter:    .res 1  ; Spin on this until vblank.
 
 .proc nmi_handler
     ; Push registers to the stack.
+    php
     pha
     txa
     pha
@@ -101,7 +102,7 @@ doneUpdatingGameTimer:
     pla
     tax
     pla
-    rti
+    plp
     rti
 .endproc
 
