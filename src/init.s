@@ -59,6 +59,22 @@ waitFrame2:
     bit PPUSTATUS
     bpl waitFrame2
 
+    ; NTSC/PAL detection code by tokumaru.
+    ; (See http://forums.nesdev.com/viewtopic.php?f=2&t=12350 )
+
+    ; Wait for the next NTSC vertical blank (PAL and Dendy would take longer)
+    ldx #$70
+:   ldy #$35
+:   dey
+    bne :-
+    dex
+    bne :--
+
+    ;detect whether the frame rate is 60Hz or 50Hz
+    lda PPUSTATUS
+    and #%10000000
+    sta framerate_60
+
     ; Ok! Everything is initialized and we'll jump to 'main' at the start
     ; of vblank.
     jmp main

@@ -14,6 +14,7 @@ deaths_digits:          .res NUM_DEATHS_DIGITS
 seconds_digits:         .res NUM_SECONDS_DIGITS
 minutes_digits:         .res NUM_MINUTES_DIGITS
 hours_digits:           .res NUM_HOURS_DIGITS
+framerate_60:           .res 1
 
 ; Palette
 palette_dim:            .res 1

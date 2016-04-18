@@ -15,7 +15,6 @@
 .import FamiToneUpdate
 .import FamiToneSfxPlay
 .importzp FT_SFX_CH0, FT_SFX_CH1
-.importzp FT_SFX_CH2, FT_SFX_CH3
 .import ralph4_music_music_data
 .import sounds
 
@@ -80,7 +79,13 @@ dontDraw:
     cmp #1
     bcc doneUpdatingGameTimer
     inc frame_counter
+    lda framerate_60
+    bne fps60
+    lda #50
+    jmp doCmp
+fps60:
     lda #60
+doCmp:
     cmp frame_counter
     bne doneUpdatingGameTimer
     ; Increment the timer by 1 second.
@@ -151,7 +156,7 @@ titleScreen:
     sta PPUCTRL
 
     ; Init FamiTone2 while waiting for the next frame.
-    lda #1              ; A = 0 for PAL. A > 0 for NTSC.
+    lda framerate_60    ; A = 0 for PAL. A > 0 for NTSC.
     ldx #<ralph4_music_music_data
     ldy #>ralph4_music_music_data
     jsr FamiToneInit
@@ -171,7 +176,25 @@ titleScreenLoop:
     wait_for_nmi
     jmp titleScreenLoop
 startGame:
+    lda #0
+    ldx #FT_SFX_CH0
+    jsr FamiToneSfxPlay
+
+    ; Flash the screen.
+    lda #$06
+    sta palette_bg_color
+    wait_for_nmi 3
+    lda #$27
+    sta palette_bg_color
+    wait_for_nmi 10
+    lda #$0D
+    sta palette_bg_color
+    wait_for_nmi 5
+    lda #$06
+    sta palette_bg_color
+    wait_for_nmi 10
     jsr fade_out
+    wait_for_nmi 10
 
     lda #1
     jsr FamiToneMusicPlay
@@ -313,7 +336,7 @@ restartGame:
 .endproc
 
 .proc do_kill_player
-    lda #1
+    lda #2
     ldx #FT_SFX_CH0
     jsr FamiToneSfxPlay
 
@@ -343,6 +366,10 @@ doneIncrementDeaths:
 .endproc
 
 .proc do_advance_level
+    lda #3
+    ldx #FT_SFX_CH0
+    jsr FamiToneSfxPlay
+
     wait_for_nmi
     jsr fade_out
 

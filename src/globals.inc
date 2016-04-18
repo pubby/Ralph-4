@@ -76,6 +76,7 @@ ENEMY_SPRITE_Y_OFFSET = -1
 .globalzp current_level, game_event_flags, game_timer, movement_ticks
 .globalzp frame_counter, using_timer, animation_ticks
 .globalzp deaths_digits, seconds_digits, minutes_digits, hours_digits
+.globalzp framerate_60
 .globalzp palette_dim, palette_bg_color
 .globalzp buttons_held, buttons_pressed
 .globalzp player_x1, player_x2, player_y1, player_y2
