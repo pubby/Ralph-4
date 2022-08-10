@@ -1,4 +1,4 @@
-.include "src/globals.inc"
+.include "globals.inc"
 
 .import FT_BASE_ADR, main
 

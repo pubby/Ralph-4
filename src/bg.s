@@ -1,4 +1,4 @@
-.include "src/globals.inc"
+.include "globals.inc"
 
 .export ppu_set_title_bg, ppu_set_game_bg, ppu_set_ending_bg
 .export ppu_set_results_bg, ppu_set_timer_display

@@ -1,4 +1,4 @@
-.include "src/globals.inc"
+.include "globals.inc"
 
 .export load_level
 

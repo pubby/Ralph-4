@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
     }
     std::ofstream out(argv[1]);
     int const table_size = 256;
-    out << ".include \"src/globals.inc\"\n";
+    out << ".include \"globals.inc\"\n";
     out << ".segment \"RODATA\"\n";
     out << "sin_table:";
     for(int i = 0; i != table_size; ++i) {

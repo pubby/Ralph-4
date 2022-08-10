@@ -76,7 +76,7 @@ Planemap opcodes:
                             rowbits = 1
                 if little: thisrow.reverse()
                 out.extend(thisrow)
-    return out.tostring()
+    return out.tobytes()
 
 def pilbmp2chr(im, tileWidth=8, tileHeight=8,
                formatTile=lambda im: formatTilePlanar(im, "0;1")):
@@ -190,7 +190,7 @@ def main(argv=None):
     if usePackBits:
         from packbits import PackBits
         sz = len(outdata) % 0x10000
-        outdata = PackBits(outdata).flush().tostring()
+        outdata = PackBits(outdata).flush().tobytes()
         outdata = b''.join([chr(sz >> 8), chr(sz & 0xFF), outdata])
 
     # Read input file

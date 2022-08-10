@@ -1,4 +1,4 @@
-.include "src/globals.inc"
+.include "globals.inc"
 
 .import FamiToneSfxPlay
 .importzp FT_SFX_CH0, FT_SFX_CH1

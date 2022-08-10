@@ -1,4 +1,4 @@
-.include "src/globals.inc"
+.include "globals.inc"
 
 .import FT_TEMPO_ACC_L
 .export prepare_blank_sprites, prepare_game_sprites, ppu_set_sprites
@@ -166,7 +166,7 @@ frame2:
         sta CPU_OAM+2,x ; Set sprite's attributes.
         lda player_x1
         clc
-        adc #(8*i)+PLAYER_SPRITE_X_OFFSET
+        adc #.lobyte((8*i)+PLAYER_SPRITE_X_OFFSET)
         sta CPU_OAM+3,x ; Set sprite's x-position.
         .repeat 4
             inx

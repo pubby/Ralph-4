@@ -1,4 +1,4 @@
-.include "src/globals.inc"
+.include "globals.inc"
 
 .import read_gamepad
 .import prepare_blank_sprites, prepare_game_sprites, ppu_set_sprites

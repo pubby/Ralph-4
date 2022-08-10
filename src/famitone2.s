@@ -2,7 +2,7 @@
 ; By Shiru and released into the public domain.
 ; A few tiny edits by Pubby.
 
-.include "src/globals.inc"
+.include "globals.inc"
 
 .export FamiToneInit
 .export FamiToneMusicPlay

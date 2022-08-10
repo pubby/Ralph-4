@@ -236,7 +236,7 @@ void write_levels(char const* filename, std::vector<grid_t> levels,
         throw EXIT_FAILURE;
     }
 
-    outfile << ".include \"src/globals.inc\"\n";
+    outfile << ".include \"globals.inc\"\n";
     outfile << "num_levels = " << levels.size() << '\n';
     outfile << ".segment \"RODATA\"\n\n";
     outfile << "level_index:";
